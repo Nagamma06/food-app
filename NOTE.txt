@@ -1,0 +1,17 @@
+Extensions:
+1. Auto import
+2. DotEnv
+3. ESLint
+4. Javascript (ES6) Code  snippet
+5. Material Icon Theme
+6. Prettier
+
+
+Packages:
+1. Expressjs
+2. nodemon : auto server start
+3. colors: to show text in different color on terminal
+4. morgan: HTTP request logger middleware for nodejs
+5. dotenv
+6. cors : cross-origin (request from another port)
+7. mongoose :  mongodb package
