@@ -12,7 +12,10 @@ module.exports = async(req,res,next) => {
                     message:'un-authorized user'
                 })
             }else{
-                req.body.id = decode.id
+                //console.log("In middleware:",req.body)
+                //req.body.id = decode.id
+                req.body = {...req.body, id: decode.id};
+               // console.log("After middleware:",req.body)
                 next()
             }
         })
@@ -21,7 +24,7 @@ module.exports = async(req,res,next) => {
         console.log(error.message)
         return res.status(500).send({
             success:false,
-            message:'Error In Auth API',
+            message:'Please provide auth Token',
             error
         })
     }

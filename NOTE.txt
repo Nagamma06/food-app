@@ -15,3 +15,15 @@ Packages:
 5. dotenv
 6. cors : cross-origin (request from another port)
 7. mongoose :  mongodb package
+
+
+STEPS TO RESET PASSWORD 
+Step I: API 1- Send Reset password link
+    1. Get email from user
+    2. Check if user exists
+    3. Generate a token
+    4. send email with password reset link : http://8080/v1/user/passwordReset?token=<your-token>
+Step II: API 2 - Update or rest password from provided link
+    5. Before updating or resetting the password we will check if the token in the url is valid or has expired.
+    6. If everthing is correct , then user can set the new password
+Note: To make reset password link with token used only one time , need to mark it in db with flag "resetTokenUsed: true or "resetTokenUsed":false 
