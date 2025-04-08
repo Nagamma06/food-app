@@ -132,10 +132,7 @@ const sendResetPasswordLink= async(req,res) =>{
             })
         }
         //generate reset token
-        const token = JWT.sign({id:user._id,email:user.email},
-                               process.env.JWT_SECRET,
-                               {"expiresIn":"10m"
-        })
+        const token = JWT.sign({id:user._id,email:user.email},process.env.JWT_SECRET,{"expiresIn":"10m"})
         //send email with reset link
         const link = `${process.env.WEBSITE_LINK}/resetPassword?token=${token}`
         console.log(link)
@@ -196,4 +193,30 @@ try{
     })
 }
 }
-module.exports = {userController, updateUserController, passwordUpdateController, sendResetPasswordLink,resetUserPasswordController}
+
+const deleteUserProfileController = async(req,res) =>{
+    try{
+        
+        const deleteUser = await userModel.findByIdAndDelete({_id:req.body.id})
+        if(!deleteUser){
+            return res.status(401).send({
+                success:false,
+                message:"User not found"
+            })
+        }
+        return res.status(200).send({
+            success:true,
+            message:"User profile has been deleted"
+        })
+
+    }catch(err){
+        res.status(500).send({
+            success:false,
+            message:"Error in delete user profile API",
+            error:err
+        })
+    }
+
+}
+
+module.exports = {userController, updateUserController, passwordUpdateController, sendResetPasswordLink,resetUserPasswordController, deleteUserProfileController}

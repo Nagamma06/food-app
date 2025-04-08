@@ -27,3 +27,11 @@ Step II: API 2 - Update or rest password from provided link
     5. Before updating or resetting the password we will check if the token in the url is valid or has expired.
     6. If everthing is correct , then user can set the new password
 Note: To make reset password link with token used only one time , need to mark it in db with flag "resetTokenUsed: true or "resetTokenUsed":false 
+
+DELETE USER PROFILE
+- Normal users can only delete their own profiles (identity verified through JWT).
+- Admin users can delete any user, typically via a route like:
+    DELETE /api/v1/admin/delete/:userId
+
+LOGOUT
+- JWT token should be removed from frontend 
